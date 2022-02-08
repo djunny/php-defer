@@ -4,7 +4,6 @@ on:
     tags:
       - v*
     branches:
-      - "5.0"
   pull_request:
 
 jobs:
