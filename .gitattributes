@@ -1,3 +1,4 @@
+/.github export-ignore
 /bin export-ignore
 /dev-tools export-ignore
 /tests export-ignore

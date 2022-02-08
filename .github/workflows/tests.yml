@@ -1,0 +1,35 @@
+name: 'Tests'
+on:
+  push:
+    tags:
+      - v*
+    branches:
+      - "5.0"
+  pull_request:
+
+jobs:
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        php-versions: ['7.4', '8.0', '8.1']
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php-versions }}
+
+      - name: Tests
+        run: vendor/bin/phpunit
+
+      - name: Coverage
+        run: bin/coveralls.sh
