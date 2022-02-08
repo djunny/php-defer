@@ -39,5 +39,5 @@ jobs:
       - name: Tests
         run: vendor/bin/phpunit
 
-      - name: Coverage
-        run: bin/coveralls.sh
+#      - name: Coverage
+#        run: bin/coveralls.sh
