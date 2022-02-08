@@ -31,6 +31,12 @@ jobs:
         with:
           php_version: ${{ matrix.php-versions }}
 
+      - name: Install dev-tools
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php-versions }}
+          args: --working-dir=dev-tools
+
       - name: Tests
         run: vendor/bin/phpunit
 
